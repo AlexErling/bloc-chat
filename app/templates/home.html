@@ -1,5 +1,20 @@
-<h1>Chat Rooms</h1>
-<button ng-click='home.addRoom()'>Add New Room</button>
-<div ng-repeat="chatRoom in home.chatRooms">
-  <p>{{ chatRoom.$value }}</p>
+<aside class="sidebar">
+    <div class="sidebar-header">
+      <h1>Chat Rooms</h1>
+      <button type="button" ng-click='home.addRoom()'>Add New Room</button>
+    </div>
+    <div class="sidebar-body" ng-repeat="chatRoom in home.chatRooms" >
+      <p class="room-name" ng-click="home.setCurrentRoom(chatRoom)">{{ chatRoom.name }}</p>
+    </div>
+</aside>
+
+<div class="messages">
+    <div class="messages-header">
+        <h3>{{ home.currentRoom.name }}</h3>
+    </div>
+    <div class="messages-body" ng-repeat="message in home.messages">
+        <div class="username">{{ message.username }}</div>
+        <div class="timestamp">{{ message.sentAt | date : "shortTime" }}</div>
+        <div class="user-message">{{ message.content }}</div>
+    </div>
 </div>
